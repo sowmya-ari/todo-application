@@ -73,3 +73,36 @@ describe('delete /allTasks/:id', function () {
         .expect(200,done);
     });
 });
+
+describe('edit /allTasks/:id', function () {
+    var id=0
+    before(function() {
+        model.todolist.create({
+           task   : 'As a user, I should be able to test my story',
+           status : 'completed'
+        }).then((task)=> {
+            id=task.dataValues.id
+        })
+    })
+    after(function() {
+        model.todolist.destroy({
+            where : {
+             id: id
+            }
+        })
+    })
+    it('It should edit a task', function (done) {
+        request(app)
+        .patch('/allTasks/'+id)
+        .send({task:"dummy"})
+        .set('Accept', 'application/json')
+        .expect(200,done);
+    });
+    it('It should mark the task status as completed', function (done) {
+        request(app)
+        .patch('/allTasks/'+id)
+        .send({status:"completed"})
+        .set('Accept', 'application/json')
+        .expect(200,done);
+    });
+});
