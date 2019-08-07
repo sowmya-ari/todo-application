@@ -55,3 +55,21 @@ describe('POST /allTasks', function () {
         .expect(201,done);
     });
 });
+
+describe('delete /allTasks/:id', function () {
+    var id=0
+    before(function() {
+        model.todolist.create({
+           task   : 'As a user, I should be able to test my story',
+           status : 'completed'
+        }).then((task)=> {
+            id=task.dataValues.id
+        })
+    })
+    it('It should delete the task from todo list according to the given id', function (done) {
+        request(app)
+        .delete('/allTasks/'+id)
+        .set('Accept', 'application/json')
+        .expect(200,done);
+    });
+});
