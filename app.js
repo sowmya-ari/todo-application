@@ -11,5 +11,5 @@ app.use(
 
 app.get('/allTasks',routes)
 app.get('/allTasks/active',routes)
-
+app.get('/allTasks/completed',routes)
 module.exports = app
