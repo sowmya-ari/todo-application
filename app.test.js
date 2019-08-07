@@ -38,3 +38,20 @@ describe('GET /allTasks', function () {
         .expect(200,done);
     });
 })
+
+describe('POST /allTasks', function () {
+    after(function() {
+        model.todolist.destroy({
+            where : {
+             task: 'dummy' 
+            }
+        })
+    })
+    it('add a new task to the list', function (done) {
+        request(app)
+        .post('/allTasks')
+        .send({"task": "dummy","status": "dummy"})
+        .set('Accept', 'application/json')
+        .expect(201,done);
+    });
+});
