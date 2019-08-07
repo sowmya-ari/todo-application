@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const routes = require('./routes')
 
 app.use(bodyParser.json())
 app.use(
@@ -14,4 +15,6 @@ app.get('/allTasks/active',routes)
 app.get('/allTasks/completed',routes)
 app.post('/allTasks',routes)
 app.delete('/allTasks/:id',routes)
+app.patch('/allTasks/:id',routes)
+
 module.exports = app
