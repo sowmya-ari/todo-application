@@ -9,4 +9,6 @@ app.use(
   })
 )
 
+app.get('/allTasks',routes)
+
 module.exports = app
