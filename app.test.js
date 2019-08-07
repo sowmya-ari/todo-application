@@ -25,4 +25,10 @@ describe('GET /allTasks', function () {
         .set('Accept', 'application/json')
         .expect(200,done);
     });
+    it('respond with an array containing a list of all active tasks', function (done) {
+        request(app)
+        .get('/allTasks/active')
+        .set('Accept', 'application/json')
+        .expect(200,done);
+    });
 })
