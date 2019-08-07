@@ -51,4 +51,19 @@ router.post( '/allTasks', ( req, res ) => {
     .catch(error => {
       res.status( 500 ).send( error )
     })
-  })
+})
+
+router.delete( '/allTasks/:id', ( req, res ) => {
+    model.todolist.destroy({
+      where: {
+        id : req.params.id
+      }
+    })
+    .then((result) => {
+      console.log(result)
+      res.status(200).send('task deleted')
+    })
+    .catch(error => {
+      res.status( 500 ).send( error )
+    })
+})

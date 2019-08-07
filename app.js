@@ -13,4 +13,5 @@ app.get('/allTasks',routes)
 app.get('/allTasks/active',routes)
 app.get('/allTasks/completed',routes)
 app.post('/allTasks',routes)
+app.delete('/allTasks/:id',routes)
 module.exports = app
