@@ -39,3 +39,16 @@ router.get( '/allTasks/active', ( req, res ) => {
       res.status( 500 ).send( error )
     })
 })
+
+router.post( '/allTasks', ( req, res ) => {
+    model.todolist.create({
+      task  : req.body.task,
+      status: req.body.status
+    })
+    .then((result) => {
+      res.status(201).json(result)
+    })
+    .catch(error => {
+      res.status( 500 ).send( error )
+    })
+  })

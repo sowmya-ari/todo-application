@@ -12,4 +12,5 @@ app.use(
 app.get('/allTasks',routes)
 app.get('/allTasks/active',routes)
 app.get('/allTasks/completed',routes)
+app.post('/allTasks',routes)
 module.exports = app
