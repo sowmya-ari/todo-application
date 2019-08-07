@@ -31,4 +31,10 @@ describe('GET /allTasks', function () {
         .set('Accept', 'application/json')
         .expect(200,done);
     });
+    it('respond with an array containing a list of all completed tasks', function (done) {
+        request(app)
+        .get('/allTasks/completed')
+        .set('Accept', 'application/json')
+        .expect(200,done);
+    });
 })
