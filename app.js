@@ -10,5 +10,6 @@ app.use(
 )
 
 app.get('/allTasks',routes)
+app.get('/allTasks/active',routes)
 
 module.exports = app
