@@ -103,11 +103,7 @@ router.patch( '/allTasks/:id', ( req, res ) => {
         res.status( 500 ).send( error )
       })
     }
-  })
-  
-  router.use((req,res) => {
-    res.status(404).send('page not found')
 })
-    
+
 module.exports = router
      
