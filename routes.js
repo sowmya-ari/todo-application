@@ -59,8 +59,8 @@ router.delete( '/allTasks/:id', ( req, res ) => {
       id : req.params.id
     }
   })
-  .then((todolist) => {
-    if(todolist== 0){
+  .then((result) => {
+    if(result== 0){
       res.status(404).send('page not found')
     } 
     else{

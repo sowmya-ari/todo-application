@@ -63,7 +63,7 @@ describe('delete /allTasks/:id', function () {
            task   : 'As a user, I should be able to test my story',
            status : 'completed'
         }).then((task)=> {
-            id=task.dataValues.id
+            id = task.dataValues.id
         })
     })
     it('It should delete the task from todo list according to the given id', function (done) {
