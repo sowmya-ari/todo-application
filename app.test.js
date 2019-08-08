@@ -106,11 +106,3 @@ describe('edit /allTasks/:id', function () {
         .expect(200,done);
     });
 });
-
-describe('',function (){
-    it('It should test for a 404 page', function (done) {
-        request(app)
-        .set('Accept', 'application/json')
-        .expect(400,done);
-    });
-})

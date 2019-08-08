@@ -3,7 +3,7 @@ const router  = express.Router()
 const model = require('./models/index')
 
 router.get( '/allTasks', ( req, res ) => {
-  model.findAll()
+  model.todolist.findAll()
   .then((result) => {
     res.status( 200 ).json(result)
   })
@@ -59,8 +59,8 @@ router.delete( '/allTasks/:id', ( req, res ) => {
       id : req.params.id
     }
   })
-  .then((result) => {
-    if(result== null){
+  .then((todolist) => {
+    if(todolist== 0){
       res.status(404).send('page not found')
     } 
     else{
@@ -85,8 +85,9 @@ router.patch( '/allTasks/:id', ( req, res ) => {
         }
       }
     )
-    .then((result) => {
-      if(result== null){
+    .then((todolist) => {
+      console.log(todolist)
+      if(todolist== 0){
         res.status(404).send('page not found')
       } 
       else{
@@ -106,8 +107,8 @@ router.patch( '/allTasks/:id', ( req, res ) => {
         where: {id :req.params.id}
       }
     )
-    .then((result) => {
-      if(result == null){
+    .then((todolist) => {
+      if(todolist == 0){
         res.status(404).send('page not found')
       } 
       else{
