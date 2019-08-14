@@ -5,19 +5,27 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const environment = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[environment];
+const defaultConfig = require(__dirname + '/../config/config.json')[environment];
 const db = {};
-const env = process.env;
+const env = process.env
+let sequelize;
 
-const configuration = {
-  username: env.POSTGRES_USERNAME || config.username,
-  password: env.POSTGRES_PASSWORD || config.password,
-  database: env.POSTGRES_DB || config.database,
-  host: env.POSTGRES_HOSTNAME || config.host,
-  port: env.POSTGRES_PORT  || config.port,
+let config = {
+  username: env.POSTGRES_USER || defaultConfig.username,
+  password: env.POSTGRES_PASSWORD || defaultConfig.password,
+  database: env.POSTGRES_DB || defaultConfig.database,
+  host: env.POSTGRES_HOST || defaultConfig.host,
+  port: env.POSTGRES_PORT || 5432,
   dialect: 'postgres'
 }
-let sequelize = new Sequelize(configuration.database, configuration.username, configuration.password,configuration);
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+
+console.log(config);
+
 
 fs
   .readdirSync(__dirname)
@@ -37,5 +45,4 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
 module.exports = db;
