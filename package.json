@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha app.test.js"
+    "dev": "nodemon server.js"
   },
   "author": "Sowmya",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "db-migrate-pg": "^1.0.0",
     "express": "^4.17.1",
     "mocha": "^6.2.0",
     "pg": "^7.12.0",
