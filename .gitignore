@@ -1,4 +1,4 @@
-/node_modules
-/package-lock.json
-/dbdata
-/package.json
+node_modules
+package-lock.json
+dbdata
+package.json
