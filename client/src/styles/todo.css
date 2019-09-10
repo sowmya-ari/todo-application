@@ -1,0 +1,27 @@
+#completed label {
+	color: #a9a9a9;
+	text-decoration: line-through;
+}
+.editing {
+    background: #fff;
+	padding: 10px 10px;
+	position: relative;
+    font: 14px;
+	width: 487px;
+	height:auto ;
+    margin: 0 auto; 
+}
+.editing input[type="text"]{
+	border-bottom: none;
+	display: block;  
+	font-style: italic;
+	width: 100%;
+	font-size: 24px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	line-height: 1.5em;
+	outline: none;	
+}
+	  
+
+  

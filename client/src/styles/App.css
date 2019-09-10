@@ -1,0 +1,20 @@
+
+.todo h1 {
+    display:block;
+    font-size: 5em;
+    font-weight: bold;
+    text-align: center;
+    color: #b3b3b3;
+    padding: 120px 0 10px 0;
+}
+#header:before{
+    content: '';
+    border-left: 1px solid #f5d6d6;
+    border-right: 1px solid #f5d6d6;
+    width: 5px;
+    position: absolute;
+    top: 250px;
+    bottom:500px;
+    left: 500px;
+    height: 9.8%;
+}

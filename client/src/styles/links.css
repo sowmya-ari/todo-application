@@ -1,0 +1,49 @@
+.links{
+    margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	left: 280px;
+}
+.links ul {
+    width: 520px;
+	margin: auto;
+}
+.links li a {
+	color: #83756f;
+	margin: 2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+.links li a:active{
+	font-weight: bold;
+}
+a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.links ul:after{
+	color: #777;
+	padding: 0 15px;
+	position: absolute;
+	right: 0;
+	bottom:-31px;
+	left: 0;
+	height: 20px;
+	z-index: 1;
+	text-align: center;
+}
+.links ul:before{
+	content: '';
+	position: absolute;
+	right: 430px;
+	bottom: 44px;
+	left: 155px;
+	height: 50px;
+	z-index: -1;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),
+				0 6px 0 -3px rgba(255, 255, 255, 0.8),
+				0 7px 1px -3px rgba(0, 0, 0, 0.3),
+				0 43px 0 -6px rgba(255, 255, 255, 0.8),
+				0 44px 2px -6px rgba(0, 0, 0, 0.2);
+}
