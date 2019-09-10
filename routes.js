@@ -72,9 +72,7 @@ router.delete( '/allTasks/:id', ( req, res ) => {
   })
 })
 
-router.patch( '/allTasks/:id', ( req, res ) => {
-  var { task , status} = req.body
-  if (status == null) {
+router.put( '/allTasks/:id', ( req, res ) => {
     model.todolist.update(
       {
         task: req.body.task
@@ -97,11 +95,11 @@ router.patch( '/allTasks/:id', ( req, res ) => {
     .catch(error => {
       res.status( 500 ).send( error )
     })
-  }
-  else {
+})
+router.patch( '/allTasks/:id', ( req, res ) => {
     model.todolist.update(
       {
-        status : 'completed'
+        status : req.body.status
       },
       {
         where: {id :req.params.id}
@@ -118,7 +116,6 @@ router.patch( '/allTasks/:id', ( req, res ) => {
     .catch(error => {
       res.status( 500 ).send( error )
     })
-  }
 })
 
 router.use((req,res) => {

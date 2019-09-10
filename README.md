@@ -1,3 +1,5 @@
+Start the application with "npm run dev" locally
+ 
 Developing todo backend application.
 Technologies using:
    1. Nodejs

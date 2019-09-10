@@ -20,4 +20,13 @@ services:
       - "db"
     environment:
       POSTGRES_HOST: host.docker.internal
-    command: ["npm", "start"]
+    command: ["npm","run","dev"]
+
+  client:
+    build:
+      context: ./client/
+    command: npm start
+    depends_on:
+      - web
+    ports:
+      - "3000:3000"
