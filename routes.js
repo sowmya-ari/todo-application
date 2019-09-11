@@ -96,6 +96,7 @@ router.put( '/allTasks/:id', ( req, res ) => {
       res.status( 500 ).send( error )
     })
 })
+
 router.patch( '/allTasks/:id', ( req, res ) => {
     model.todolist.update(
       {
