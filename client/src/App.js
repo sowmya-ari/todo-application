@@ -35,7 +35,6 @@ class App extends React.Component {
 
   handleChange = event => {
     this.setState({ task: event.target.value });
-    console.log(event.target.value);
   };
 
   postNewTask(event) {

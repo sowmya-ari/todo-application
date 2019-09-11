@@ -56,7 +56,7 @@ class Eachitem extends React.Component {
           onChange={this.props.markAsComplete.bind(this)} 
           style={{fontSize: 'x-large'}}>
         </input> 
-       <label>{this.state.changedText}</label> 
+        <label>{this.state.changedText}</label> 
         <button className="destroy" onClick={this.props.removeTask.bind(this)}></button>
       </div> 
         <input 
