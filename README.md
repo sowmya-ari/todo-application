@@ -1,6 +1,6 @@
+Developing todo application.
 Start the application with "npm run dev" locally
 
-Developing todo application.
 Technologies using:
 
 1.  Nodejs

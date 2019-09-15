@@ -1,5 +1,7 @@
 import React from 'react';
+
 import "../styles/links.css"
+
 export default function Links() {
   return (
   <div className="links">
