@@ -18,10 +18,7 @@ class ActiveTodos extends React.Component {
   getActiveTasks = () => {
    fetch('http://localhost:8080/task/active')
    .then(res => res.json())
-   .then(res => {
-    var tasklist = res.map(r => r)
-    this.setState({todos:tasklist});
-   })
+    this.setState({todos:res});
   }
 
   render(){
