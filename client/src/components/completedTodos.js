@@ -18,10 +18,7 @@ class CompletedTodos extends React.Component {
   getCompletedTasks = () => {
    fetch('http://localhost:8080/task/completed')
    .then(res => res.json())
-   .then(res => {
-    var tasklist = res.map(r => r)
-    this.setState({todos:tasklist});
-   })
+   this.setState({todos:res});
   }
 
   render(){
