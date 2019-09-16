@@ -1,4 +1,4 @@
-Developing todo application.
+To-do application.
 Start the application with "npm run dev" locally
 
 Technologies using:
@@ -13,7 +13,7 @@ Technologies using:
 8.  Airbnb style guide
 9.  React,CSS and bootstarp
 
-Story cards:
+Implemented API's for this story cards:
 
 1. As a user, I should be able to add a task.
 2. As a user, I should be able to list all my tasks.
