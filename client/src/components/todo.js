@@ -19,7 +19,7 @@ class Todo extends React.Component {
   }
   handleEditingDone(event){
     var task=this.props.task;
-    fetch('http://localhost:8080/task/' + task.id, {
+    fetch('/task/' + task.id, {
       method: 'PUT',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -39,14 +39,14 @@ class Todo extends React.Component {
   }
   removeTask(){
     var task=this.props.task;
-    fetch('http://localhost:8080/task/' + task.id, {
+    fetch('/todo/' + task.id, {
       method: 'DELETE'})
   }; 
   markAsComplete(){
     var task=this.props.task; 
     var currentStatus=task.status;
     let data=(currentStatus==="active")?"completed":"active"
-    fetch('http://localhost:8080/task/' + task.id, {
+    fetch('/todo/' + task.id, {
       method: 'PATCH',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
