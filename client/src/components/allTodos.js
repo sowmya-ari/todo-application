@@ -16,9 +16,9 @@ class AllTodos extends React.Component {
     this.getAllTasks();
   }  
   getAllTasks = () => {
-    fetch('http://localhost:8080/allTasks')
-    .then(res => res.json())
-    this.setState({todos:res});
+    fetch('/todos')
+    .then(response => response.json())
+    .then(data=>this.setState({todos:data})) 
   }
 
   render() {
