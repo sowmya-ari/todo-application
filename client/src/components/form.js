@@ -19,7 +19,7 @@ class Form extends Component {
       task: this.state.task,
       status: "active"
     };
-    fetch("http://localhost:8080/newTask", {
+    fetch("/todo", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
