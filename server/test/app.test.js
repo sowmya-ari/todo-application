@@ -5,7 +5,7 @@ const model = require('../models/index')
 describe('GET /allTasks', function () {
     var id=0;
     before(function() {
-        model.todolist.create({
+        model.Todo.create({
            task   : 'As a user, I should be able to test my story',
            status : 'completed'
         }).then((task)=> {
@@ -13,7 +13,7 @@ describe('GET /allTasks', function () {
         })
     })
     after(function() {
-        model.todolist.destroy({
+        model.Todo.destroy({
             where : {
              id : id
             }
@@ -21,19 +21,19 @@ describe('GET /allTasks', function () {
     })
     it('respond with an array containing a list of all tasks', function (done) {
         request(app)
-        .get('/allTasks')
+        .get('/todos')
         .set('Accept', 'application/json')
         .expect(200,done);
     });
     it('respond with an array containing a list of all active tasks', function (done) {
         request(app)
-        .get('/task/active')
+        .get('/todos/active')
         .set('Accept', 'application/json')
         .expect(200,done);
     });
     it('respond with an array containing a list of all completed tasks', function (done) {
         request(app)
-        .get('/task/completed')
+        .get('/todos/completed')
         .set('Accept', 'application/json')
         .expect(200,done);
     });
@@ -41,7 +41,7 @@ describe('GET /allTasks', function () {
 
 describe('POST /allTasks', function () {
     after(function() {
-        model.todolist.destroy({
+        model.Todo.destroy({
             where : {
              task: 'dummy' 
             }
@@ -49,7 +49,7 @@ describe('POST /allTasks', function () {
     })
     it('add a new task to the list', function (done) {
         request(app)
-        .post('/newTask')
+        .post('/todo')
         .send({"task": "dummy","status": "dummy"})
         .set('Accept', 'application/json')
         .expect(201,done);
@@ -59,7 +59,7 @@ describe('POST /allTasks', function () {
 describe('delete /allTasks/:id', function () {
     var id=0
     before(function() {
-        model.todolist.create({
+        model.Todo.create({
            task   : 'As a user, I should be able to test my story',
            status : 'completed'
         }).then((task)=> {
@@ -68,7 +68,7 @@ describe('delete /allTasks/:id', function () {
     })
     it('It should delete the task from todo list according to the given id', function (done) {
         request(app)
-        .delete('/task/'+id)
+        .delete('/todo/'+id)
         .set('Accept', 'application/json')
         .expect(200,done);
     });
@@ -77,7 +77,7 @@ describe('delete /allTasks/:id', function () {
 describe('edit /allTasks/:id', function () {
     var id=0
     before(function() {
-        model.todolist.create({
+        model.Todo.create({
            task   : 'As a user, I should be able to test my story',
            status : 'completed'
         }).then((task)=> {
@@ -85,7 +85,7 @@ describe('edit /allTasks/:id', function () {
         })
     })
     after(function() {
-        model.todolist.destroy({
+        model.Todo.destroy({
             where : {
              id: id
             }
@@ -93,14 +93,14 @@ describe('edit /allTasks/:id', function () {
     })
     it('It should edit a task', function (done) {
         request(app)
-        .patch('/task/'+id)
+        .patch('/todo/'+id)
         .send({task:"dummy"})
         .set('Accept', 'application/json')
         .expect(200,done);
     });
     it('It should mark the task status as completed', function (done) {
         request(app)
-        .patch('/task/'+id)
+        .patch('/todo/'+id)
         .send({status:"completed"})
         .set('Accept', 'application/json')
         .expect(200,done);
