@@ -1,5 +1,5 @@
 To-do application.
-Start the application with "npm run dev" locally
+Start the application with "npm run dev" locally.
 
 Technologies using:
 
