@@ -1,0 +1,69 @@
+- hosts: ansible1
+  become: yes
+  gather_facts: no
+
+  tasks:
+  - name: ensure apt cache is up to date
+    apt: update_cache=yes
+  - name: ensure packages are installed
+    apt: name={{item}}
+    with_items:
+        - postgresql
+        - libpq-dev
+        - python-psycopg2
+
+- hosts: ansible1
+  become: yes
+  become_user: postgres
+  gather_facts: no
+
+  vars:
+    dbname: testdb
+    dbuser: postgres1
+    dbpassword: postgres1
+
+  tasks:
+  - name: ensure database is created
+    postgresql_db: name={{dbname}}
+  
+  - name: ensure postgres version is 9.6
+    postgresql_version: 9.6
+  
+  - name: ensure user has access to database
+    postgresql_user: db={{dbname}} name={{dbuser}} password={{dbpassword}} priv=ALL
+
+  - name: ensure user does not have unnecessary privilege
+    postgresql_user: name={{dbuser}} role_attr_flags=NOSUPERUSER,NOCREATEDB
+  
+  - name: ensure no other user can access the database
+    postgresql_privs: db={{dbname}} role=PUBLIC type=database priv=ALL state=absent
+
+  - name: ensure table.sql file is copied to remote host
+    become: yes
+    become_user: sowmya
+    copy: 
+      src: ./table.sql
+      dest: /home/sowmya/Desktop/table.sql
+
+  - name: ensure seeders.sql file is copied to remote host
+    become: yes
+    become_user: sowmya
+    copy: 
+      src: ./seeders.sql
+      dest: /home/sowmya/Desktop/seeders.sql
+
+  - name: ensure whether table is created and columns are inserted using sql query
+    postgresql_query:
+     db: testdb
+     path_to_script: /home/sowmya/Desktop/table.sql
+     positional_args:
+     - 1
+     
+  - name: ensure whether data is inserted into the table using sql query
+    postgresql_query:
+     db: testdb
+     path_to_script: /home/sowmya/Desktop/seeders.sql
+     positional_args:
+     - 1
+ 
+

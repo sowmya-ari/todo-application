@@ -1,0 +1,2 @@
+webserver ansible_host=ec2-18-189-123-27.us-east-2.compute.amazonaws.com ansible_connection=ssh ansible_user=ubuntu  ansible_python_interpreter=/usr/bin/python3 ansible_ssh_private_key_file=/Users/sowmya/Desktop/terraform/interns_key.pem
+db  ansible_host=ec2-18-190-71-184.us-east-2.compute.amazonaws.com ansible_connection=ssh ansible_user=ubuntu ansible_python_interpreter=/usr/bin/python3 ansible_ssh_private_key_file=/Users/sowmya/Desktop/terraform/interns_key.pem

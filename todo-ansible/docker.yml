@@ -1,0 +1,92 @@
+  - hosts: all
+    remote_user: ubuntu
+    become: true
+    tasks:
+      - name: Install aptitude using apt
+        apt: name=aptitude state=latest update_cache=no force_apt_get=yes
+
+      - name: Add Docker GPG key
+        apt_key:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          state: present
+          
+      - name: Install required system packages
+        apt: name={{ item }} state=latest update_cache=yes
+        loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+      - name: Add Docker APT repository
+        apt_repository:
+          repo: deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}} stable
+          state: present
+
+      - name: Update apt and install docker-ce
+        apt: update_cache=yes name=docker-ce state=latest
+
+      - name: Update apt and install docker-ce-cli
+        apt: update_cache=yes name=docker-ce-cli state=latest
+
+      - name: Update apt and install containerd.io
+        apt: update_cache=yes name=containerd.io state=latest
+
+      - name: Install Docker Module for Python
+        pip:
+          name: docker
+          executable: pip3
+
+      - name: Install Docker-compose
+        pip: 
+          name: docker-compose
+          executable: pip3
+  - hosts: db
+    remote_user: ubuntu
+    become: true
+    tasks:
+      - name: Starting database container
+        docker_container:
+          name: database
+          image: sowmya1234/todo-database-postgres
+          restart: yes
+          ports:
+            - "5432:5432"  
+          env:
+            POSTGRES_PASSWORD: "postgres"
+            POSTGRES_USER: "postgres"
+            POSTGRES_DB: "todo"
+            POSTGRES_HOST: "ec2-18-190-71-184.us-east-2.compute.amazonaws.com"
+            POSTGRES_PORT: "5432
+            "
+          state: started
+  - hosts: webserver
+    remote_user: ubuntu
+    become: true
+    tasks:
+      - name: Starting web server
+        docker_container:
+          name: web
+          image: sowmya1234/todo-web
+          restart: yes
+          state: started
+          env:
+            POSTGRES_PASSWORD: "postgres"
+            POSTGRES_USER: "postgres"
+            POSTGRES_DB: "todo"
+            POSTGRES_HOST: "ec2-18-190-71-184.us-east-2.compute.amazonaws.com"
+            POSTGRES_PORT: "5432"
+          ports:
+            - "8080:8080"
+          command: ["npm","run","dev"]
+
+      - name: Starting client server
+        docker_container:
+          name: client
+          image: sowmya1234/todo-client
+          state: started
+          restart: yes
+          links:
+            - web
+          ports:
+            - "3000:3000"
+          command: ["npm","start"]
+         
+
+        
