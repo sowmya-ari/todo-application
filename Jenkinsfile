@@ -6,7 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('changing in to a particular directory') { 
+        stage('changing in to a server directory') { 
             steps {
                 sh 'cd ./server' 
             }
