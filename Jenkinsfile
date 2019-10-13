@@ -16,7 +16,7 @@ pipeline {
                 sh 'npm install' 
             }
         }
-        stage('moving in to test folder') {
+        stage('moving into test folder') {
             steps {
                 sh 'cd ./test' 
             }
