@@ -9,16 +9,19 @@ pipeline {
         CI = 'true'
     }
     stages {
+        stage('Cloning Git') {
+            steps {
+              git 'https://github.com/sowmya-ari/todo-application.git'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'cd ./server'
                 sh 'npm install' 
             }
         }
         stage('moving in to test folder and running test cases') {
             steps {
-                sh 'cd ./server'
-                sh 'cd ./test' 
+                sh 'cd ./server/test'
                 sh 'npm test'
             }
         }
