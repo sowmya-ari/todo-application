@@ -16,14 +16,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd server'
-                sh 'npm install' 
+                sh 'cd server && npm install'
             }
         }
         stage('moving in to test folder and running test cases') {
             steps {
-                sh 'cd server/test'
-                sh 'npm test'
+                sh 'cd server/test && npm test'
             }
         }
        
