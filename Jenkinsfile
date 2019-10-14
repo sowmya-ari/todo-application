@@ -5,9 +5,6 @@ pipeline {
             args '-p 5000:5000' 
         }
     }
-    environment {
-        CI = 'true'
-    }
     stages {
         stage('Cloning Git') {
             steps {
@@ -19,9 +16,16 @@ pipeline {
                 sh 'cd server && npm install'
             }
         }
-        stage('moving in to test folder and running test cases') {
+        stage('Test') {
+            steps {
+                sh 'docker pull sowmya1234/todo-database-postgres'
+                sh 'docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres POSTGRES_USER=postgres POSTGRES_DB=todo POSTGRES_PORT=5432 -d sowmya1234/todo-database-postgres'
+            }
             steps {
                 sh 'cd server/test && npm test'
+            }
+            steps {
+                sh 'docker stop sowmya1234/todo-database-postgres'
             }
         }
        
