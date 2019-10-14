@@ -21,7 +21,7 @@ pipeline {
         }
         stage('moving in to test folder and running test cases') {
             steps {
-                sh 'npm test'
+                sh 'npm mocha'
             }
         }
        
