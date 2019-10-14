@@ -5,7 +5,7 @@ Technologies using:
 1.  Nodejs
 2.  Express
 3.  REST APIs
-4.  Postgre SQL - Sequelize
+4.  Postgre SQL -Sequelize
 5.  Unit testing
 6.  Postman API testing
 7.  Docker
