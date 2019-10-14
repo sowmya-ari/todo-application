@@ -1,12 +1,8 @@
 pipeline {
-    agent any {
+    agent {
         docker {
             image 'node:8.16.2-jessie' 
             args '-p 5000:5000' 
-        }
-        docker { 
-            image 'sowmya1234/todo-database-postgres' 
-            args '-p 5432:5432 -e POSTGRES_PASSWORD=postgres POSTGRES_USER=postgres POSTGRES_DB=todo POSTGRES_PORT=5432'
         }
     }
     stages {
@@ -22,6 +18,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres POSTGRES_USER=postgres POSTGRES_DB=todo POSTGRES_PORT=5432'
                 sh 'cd server/test && npm test'
             }
         }
