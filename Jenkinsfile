@@ -6,7 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('Cloning todo repository') {
+        stage('Cloning todo git repository') {
             steps {
               git 'https://github.com/sowmya-ari/todo-application.git'
             }
