@@ -1,5 +1,5 @@
 pipeline {
-    agent {
+    agent any {
         docker {
             image 'node:8.16.2-jessie' 
             args '-p 5000:5000' 
