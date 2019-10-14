@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "mocha"
   },
   "author": "Sowmya",
   "license": "ISC",
@@ -25,6 +26,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.1",
-    "concurrently": "^4.1.2"
+    "concurrently": "^4.1.2",
+    "supertest": "^4.0.2",
+    "mocha": "^6.2.0"
   }
 }
