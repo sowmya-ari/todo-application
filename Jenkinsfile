@@ -9,25 +9,19 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('changing into a server directory') { 
-            steps {
-                sh 'cd ./server' 
-            }
-        }
         stage('Build') {
             steps {
+                sh 'cd ./server'
                 sh 'npm install' 
             }
         }
-        stage('moving in to test folder') {
+        stage('moving in to test folder and running test cases') {
             steps {
+                sh 'cd ./server'
                 sh 'cd ./test' 
+                sh 'npm test'
             }
         }
-        stage('Run test'){
-            steps {
-                sh 'npm test' 
-            }
-        }
+       
     }
 }
