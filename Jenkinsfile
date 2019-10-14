@@ -18,7 +18,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres POSTGRES_USER=postgres POSTGRES_DB=todo POSTGRES_PORT=5432'
                 sh 'cd server/test && npm test'
             }
         }
