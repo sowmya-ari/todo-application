@@ -1,7 +1,7 @@
 To-do application.
 Start the application with "npm run dev" locally.
 
-Technologies using
+Technologies using:
 1.  Nodejs
 2.  Express
 3.  REST APIs
