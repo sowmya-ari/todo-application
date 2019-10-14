@@ -17,10 +17,12 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker { image 'sowmya1234/todo-database-postgres' }
+                args '-p 5432:5432 -e POSTGRES_PASSWORD=postgres POSTGRES_USER=postgres POSTGRES_DB=todo POSTGRES_PORT=5432'
+            }
             steps {
-                sh 'docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres POSTGRES_USER=postgres POSTGRES_DB=todo POSTGRES_PORT=5432 -d sowmya1234/todo-database-postgres'
                 sh 'cd server/test && npm test'
-                sh 'docker stop sowmya1234/todo-database-postgres'
             }
         }
        
