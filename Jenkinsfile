@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'cd server/test && npm test'
-                sh 'cd client/src/test && npm test'
+                sh 'cd client/src/test && npm test a'
             }
         }
        
