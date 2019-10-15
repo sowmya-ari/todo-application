@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: postgres
+    image: sowmya1234/todo-database-postgres
     volumes:
       - ./dbdata:/var/lib/postgresql/data
     ports:
@@ -14,7 +14,7 @@ services:
       POSTGRES_PORT: 54321
       
   web:
-    build: ./server/
+    image: sowmya1234/todo-web
     ports:
       - "8080:8080"
     depends_on:
@@ -24,8 +24,7 @@ services:
     command: ["npm","run","dev"]
 
   client:
-    build:
-      context: ./client/
+    image: sowmya1234/todo-client
     command: npm start
     depends_on:
       - web
