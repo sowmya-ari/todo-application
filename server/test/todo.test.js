@@ -25,7 +25,6 @@ describe("Test Sequelize Mocking", () => {
             task: "hello",
             status: "completed"
         });
-        console.log(todo);
         expect(todo.get('task')).to.equal('hello');
         expect(todo.get('status')).to.equal('completed');
     })
@@ -34,7 +33,6 @@ describe("Test Sequelize Mocking", () => {
           task: "hello",
           status: "completed"
       });
-      console.log(todo);
       expect(todo.get('task')).to.equal('hello');
       expect(todo.get('status')).to.equal('completed');
     })
@@ -44,7 +42,6 @@ describe("Test Sequelize Mocking", () => {
         id: 3
        }
       });
-     console.log(todo);
      expect(todo).to.equal(1);
     })
     it("Should update status from the model", async () => {
@@ -56,7 +53,6 @@ describe("Test Sequelize Mocking", () => {
          id: 1
         }
       });
-      console.log(todo)
       expect(todo).to.be.an('array').that.includes(1);
     })
 })
