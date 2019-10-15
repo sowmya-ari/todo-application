@@ -14,11 +14,13 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'cd server && npm install'
+                sh 'cd client && npm install'
             }
         }
         stage('Test') {
             steps {
                 sh 'cd server/test && npm test'
+                sh 'cd client/src/test && npm test'
             }
         }
        
