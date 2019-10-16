@@ -28,10 +28,6 @@ pipeline {
                 sh 'cd client/src/test && npm test a'
             }
         }
-        stage('Initialize'){
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-        }
         stage('Building Docker image') {
             steps {
                 sh 'cd server' && script {
