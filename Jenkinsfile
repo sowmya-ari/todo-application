@@ -28,8 +28,8 @@ pipeline {
         }
         stage('Building Docker image') {
             steps {
-                sh 'cd server' && 'docker build -t web .'
-                sh 'cd client' && 'docker build -t client .'
+                sh 'cd server && docker image build -t web .'
+                sh 'cd client && docker image build -t client .'
             }
         }
        
