@@ -1,8 +1,6 @@
 pipeline {
     environment {
-      serverregistry = 'sowmya1234/todo-web'
-      registryCredential = 'dockerhub'
-      serverdockerimage = ''
+      serverimage = ''
     }
     agent {
         docker {
@@ -30,8 +28,8 @@ pipeline {
         }
         stage('Building Docker image') {
             steps {
-                sh 'cd server' && script {
-                dockerImage = docker.build  serverregistry + ":$BUILD_NUMBER"}
+                sh 'cd server' && 'docker build -t web .'
+                sh 'cd client' && 'docker build -t client .'
             }
         }
        
