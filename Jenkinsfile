@@ -38,21 +38,6 @@ pipeline {
                 sh 'docker login --username=sowmya1234 --password=sowmya1234 && docker push sowmya1234/todo-web && docker push sowmya1234/todo-client'
             }
         }
-        stage('setting up for terraform') {
-            steps {
-                sh 'mkdir -p .aws'
-                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./.aws/credentials'
-            }
-        }
-        stage('Terraform apply') {
-            steps {
-              container('terraform') {
-                sh 'terraform init -input=false'
-                sh 'terraform plan -out myplan -input=false'
-              }
-            }
-        }
-       
     }
 }
     
