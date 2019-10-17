@@ -29,6 +29,7 @@ pipeline {
                 sh 'cd client && docker image build -t client .'
                 sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web:latest'
             }
+        }
         stage('Deploying docker image to dockerhub'){
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
