@@ -1,6 +1,6 @@
 pipeline {
     environment {
-      serverimage = ''
+      dockerhubCredential = 'dockerhub'
     }
     agent {
         docker {
@@ -30,12 +30,16 @@ pipeline {
             steps {
                 sh 'cd server && docker image build -t web .'
                 sh 'cd client && docker image build -t client .'
+                sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web:latest'
             }
         }
         stage('Deploying docker image to docker hub') {
             steps {
-                sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web'
-                sh 'docker login --username=sowmya1234 --password=sowmya1234 && docker push sowmya1234/todo-web && docker push sowmya1234/todo-client'
+                script {
+                  docker.withRegistry( '', dockerhubCredential ) {
+                  sowmya1234/todo-client.push()
+                  sowmya1234/rodo-web.push()
+                }
             }
         }
        
