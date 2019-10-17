@@ -38,7 +38,7 @@ pipeline {
                 script {
                   docker.withRegistry( '', dockerhubCredential ){
                   sowmya1234/todo-client.push()
-                  sowmya1234/rodo-web.push()}
+                  sowmya1234/todo-web.push()}
                 }
             }
         }
