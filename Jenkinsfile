@@ -5,6 +5,9 @@ pipeline {
             args '-p 5000:5000' 
         }
     }
+    environment {
+        SVC_ACCOUNT_KEY = credentials('terraform')
+    }
     stages {
         stage('Cloning todo git repository') {
             steps {
@@ -35,6 +38,36 @@ pipeline {
                 sh 'docker login --username=sowmya1234 --password=sowmya1234 && docker push sowmya1234/todo-web && docker push sowmya1234/todo-client'
             }
         }
+        stage('setting up for terraform') {
+            steps {
+                sh 'mkdir -p .aws'
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./.aws/credentials'
+            }
+        }
+        stage('Terraform apply') {
+            steps {
+              container('terraform') {
+                sh 'terraform init'
+                sh 'terraform plan -out myplan'
+              }
+            }
+        }
+        stage('Approval') {
+            steps {
+              script {
+                def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+              }
+            }
+        }
+        stage('TF Apply') {
+            steps {
+              container('terraform') {
+                sh 'terraform apply -input=false myplan'
+              }
+            }
+        }
+    }
+}
        
     }
 }
