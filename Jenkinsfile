@@ -30,16 +30,13 @@ pipeline {
         }
         stage('Building Docker image') {
             steps {
-                sh 'cd server && docker image build -t web .'
-                sh 'cd client && docker image build -t client .'
-                sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web:latest'
+                sh 'cd server && web=docker image build -t web .'
+                sh 'cd client && client=docker image build -t client .'
             }
         }
         stage('Deploying docker image to docker hub') {
             steps {
                 script {
-                  web = sowmya1234/todo-web
-                  client = sowmya1234/todo-client
                   docker.withRegistry( '', dockerhubCredential ){
                   web.push()
                   client.push()}
