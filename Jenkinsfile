@@ -36,9 +36,9 @@ pipeline {
         stage('Deploying docker image to docker hub') {
             steps {
                 script {
-                  docker.withRegistry( '', dockerhubCredential ) {
+                  docker.withRegistry( '', dockerhubCredential ){
                   sowmya1234/todo-client.push()
-                  sowmya1234/rodo-web.push()
+                  sowmya1234/rodo-web.push()}
                 }
             }
         }
