@@ -1,9 +1,4 @@
 pipeline {
-    environment {
-      dockerhubCredential = 'dockerhub'
-      web = ''
-      client = ''
-    }
     agent {
         docker {
             image 'node:8.16.2-jessie' 
@@ -30,17 +25,14 @@ pipeline {
         }
         stage('Building Docker image') {
             steps {
-                sh 'cd server && web=docker image build -t web .'
-                sh 'cd client && client=docker image build -t client .'
+                sh 'cd server && docker image build -t web .'
+                sh 'cd client && docker image build -t client .'
+                sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web'
             }
         }
         stage('Deploying docker image to docker hub') {
             steps {
-                script {
-                  docker.withRegistry( '', dockerhubCredential ){
-                  web.push()
-                  client.push()}
-                }
+                sh 'docker login --username=sowmya1234 --password=sowmya1234 && docker push sowmya1234/todo-web && docker push sowmya1234/todo-client'
             }
         }
        
