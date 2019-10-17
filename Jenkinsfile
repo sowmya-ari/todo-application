@@ -5,9 +5,6 @@ pipeline {
             args '-p 5000:5000' 
         }
     }
-    environment {
-        dockerCredentials = 'dockerhub'
-    }
     stages {
         stage('Cloning todo git repository') {
             steps {
@@ -34,13 +31,11 @@ pipeline {
             }
         stage('Deploying docker image to dockerhub'){
             steps {
-               withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-                sh 'docker push sowmya1234/todo-client:latest'
-                sh 'docker push sowmya1234/todo-web:latest'
-               }
+                withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+                 sh 'docker push sowmya1234/todo-client:latest'
+                 sh 'docker push sowmya1234/todo-web:latest'
+                }
             }
         }
     }
 }
-    
-      
