@@ -1,6 +1,8 @@
 pipeline {
     environment {
       dockerhubCredential = 'dockerhub'
+      web = ''
+      client = ''
     }
     agent {
         docker {
@@ -36,9 +38,11 @@ pipeline {
         stage('Deploying docker image to docker hub') {
             steps {
                 script {
+                  web = sowmya1234/todo-web
+                  client = sowmya1234/todo-client
                   docker.withRegistry( '', dockerhubCredential ){
-                  sowmya1234/todo-client.push()
-                  sowmya1234/todo-web.push()}
+                  web.push()
+                  client.push()}
                 }
             }
         }
