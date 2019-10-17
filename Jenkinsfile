@@ -6,7 +6,7 @@ pipeline {
         }
     }
     environment {
-        SVC_ACCOUNT_KEY = credentials('terraform')
+        dockerCredentials = 'dockerhub'
     }
     stages {
         stage('Cloning todo git repository') {
@@ -30,12 +30,13 @@ pipeline {
             steps {
                 sh 'cd server && docker image build -t web .'
                 sh 'cd client && docker image build -t client .'
-                sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web'
+                sh 'docker tag client sowmya1234/todo-client:latest && docker tag web sowmya1234/todo-web:latest'
             }
-        }
-        stage('Deploying docker image to docker hub') {
             steps {
-                sh 'docker login --username=sowmya1234 --password=sowmya1234 && docker push sowmya1234/todo-web && docker push sowmya1234/todo-client'
+               withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+                sh 'docker push sowmya1234/todo-client:latest'
+                sh 'docker push sowmya1234/todo-web:latest'
+               }
             }
         }
     }
