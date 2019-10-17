@@ -47,8 +47,8 @@ pipeline {
         stage('Terraform apply') {
             steps {
               container('terraform') {
-                sh 'terraform init'
-                sh 'terraform plan -out myplan'
+                sh 'terraform init -input=false'
+                sh 'terraform plan -out myplan -input=false'
               }
             }
         }
