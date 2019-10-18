@@ -67,12 +67,19 @@ pipeline {
         }
         stage('Ansible'){
             steps {
+               withEnv(["PATH+ANSIBLE=${tool '2.4.1.0'}"]){ 
+                   sh 'echo $PATH'
+                   sh 'ls -alrt'
+                   sh 'ansible --version'
+                   sh 'which ansible'
                ansiblePlaybook(
                     credentialsId: 'ssh_private_key',
                     inventory: '${WORKSPACE}/todo-ansible/docker.yml',
                     playbook: '${WORKSPACE}/todo-ansible/inventory.txt',
+                    colorized: true
                     extras: '-vvv'
                 )  
+               } 
             }
         }
     }
