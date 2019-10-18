@@ -69,8 +69,8 @@ pipeline {
             steps {
                ansiblePlaybook(
                     credentialsId: 'ssh_private_key',
-                    inventory: '/todo-ansible/docker.yml',
-                    playbook: '/todo-ansible/inventory.txt',
+                    inventory: '${WORKSPACE}/todo-ansible/docker.yml',
+                    playbook: '${WORKSPACE}/todo-ansible/inventory.txt',
                     extras: '-vvv'
                 )  
             }
