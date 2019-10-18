@@ -69,8 +69,8 @@ pipeline {
             steps {
                 sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                 sh 'apt-get install sshpass'
-                sh 'sshpass -p ChangeMe ssh -tt sowmya@10.10.10.108'
-                sh 'sshpass -p ChangeMe ssh -tt sowmya@10.10.10.171'
+                sh 'sshpass -p ChangeMe ssh -tt StrictHostKeyChecking=no sowmya@10.10.10.108'
+                sh 'sshpass -p ChangeMe ssh -tt StrictHostKeyChecking=no sowmya@10.10.10.171'
             }
         }
     }
