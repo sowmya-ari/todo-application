@@ -67,7 +67,7 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-               withEnv(["PATH+ANSIBLE=${tool '2.4.1.0'}"]){ 
+               withEnv(["PATH+ANSIBLE=${tool 'ansible'}"]){ 
                    sh 'echo $PATH'
                    sh 'ls -alrt'
                    sh 'ansible --version'
