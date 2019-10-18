@@ -67,7 +67,7 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-               sh 'git clone https://github.com/ansible/ansible.git && cd ./ansible && source ./hacking/env-setup && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py --user && pip install --user -r ./requirements.txt' 
+               sh 'git clone https://github.com/ansible/ansible.git && cd ./ansible && source ./hacking/env-setup -q && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py --user && pip install --user -r ./requirements.txt' 
                sh 'which ansible'
                sh 'ansible --version'
             }
