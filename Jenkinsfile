@@ -71,7 +71,7 @@ pipeline {
                ansiblePlaybook('./todo-ansible/docker.yml') {
                inventoryPath('./todo-ansible/inventory.txt')
                credentialsId('ssh_private_key')
-               colorized(true)
+               colorized(true)}
               }
             }
         }
