@@ -67,9 +67,10 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-               sh 'git clone https://github.com/ansible/ansible.git && cd ./ansible && source ./hacking/env-setup -q && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py --user && pip install --user -r ./requirements.txt' 
-               sh 'which ansible'
-               sh 'ansible --version'
+                sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
+                sh 'sudo apt-get install sshpass'
+                sh 'sshpass -p 'ChangeMe' ssh sowmya@10.10.10.108'
+                sh 'sshpass -p 'ChangeMe' ssh sowmya@10.10.10.171'
             }
         }
     }
