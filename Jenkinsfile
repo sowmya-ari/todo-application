@@ -70,7 +70,7 @@ pipeline {
                ansiblePlaybook(
                     credentialsId: 'ssh_private_key',
                     inventory: '${WORKSPACE}/todo-ansible/docker.yml',
-                    installation: 'ansible-2.2.1.0'
+                    installation: 'ansible-2.2.1.0',
                     playbook: '${WORKSPACE}/todo-ansible/inventory.txt',
                     colorized: true,
                     extras: '-vvv'
