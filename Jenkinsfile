@@ -71,7 +71,7 @@ pipeline {
                     credentialsId: 'ssh_private_key',
                     inventory: '/todo-ansible/docker.yml',
                     playbook: '/todo-ansible/inventory.txt',
-                    extras: ' options and var that you want add for instance verbose mode : -vvv'
+                    extras: '-vvv'
                 )  
             }
         }
