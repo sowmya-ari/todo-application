@@ -67,15 +67,9 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-               withEnv(["PATH+ANSIBLE=${tool 'ansible 2.8.5'}"]){
-               ansiblePlaybook(
-                    credentialsId: 'ssh_private_key',
-                    inventory: '${WORKSPACE}/todo-ansible/docker.yml',
-                    installation: 'ansible 2.8.5',
-                    playbook: '${WORKSPACE}/todo-ansible/inventory.txt',
-                    colorized: true,
-                    extras: '-vvv'
-                ) } 
+               sh 'git clone https://github.com/ansible/ansible.git && cd ./ansible && source ./hacking/env-setup && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py --user && pip install --user -r ./requirements.txt' 
+               sh 'which ansible'
+               sh 'ansible --version'
             }
         }
     }
