@@ -76,7 +76,7 @@ pipeline {
                     credentialsId: 'ssh_private_key',
                     inventory: '${WORKSPACE}/todo-ansible/docker.yml',
                     playbook: '${WORKSPACE}/todo-ansible/inventory.txt',
-                    colorized: true
+                    colorized: true,
                     extras: '-vvv'
                 )  
                } 
