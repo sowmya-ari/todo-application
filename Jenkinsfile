@@ -67,7 +67,7 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-               withEnv(["PATH+ANSIBLE"=${tool 'ansible-2.4.1.0'}]){
+               withEnv(["PATH+ANSIBLE=${tool 'ansible-2.4.1.0'}"]){
                    sh 'which ansible'
                    sh 'ansible --version'
                ansiblePlaybook(
