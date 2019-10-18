@@ -75,7 +75,6 @@ pipeline {
                     colorized: true,
                     extras: '-vvv'
                 )  
-               } 
             }
         }
     }
