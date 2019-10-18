@@ -67,8 +67,8 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-               ansiblePlaybook('./todo-ansible/docker.yml') {
-               inventoryPath('./todo-ansible/inventory.txt')
+               ansiblePlaybook('/todo-ansible/docker.yml') {
+               inventoryPath('/todo-ansible/inventory.txt')
                credentialsId('ssh_private_key')
                colorized(true)
                }
