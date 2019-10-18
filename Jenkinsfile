@@ -70,6 +70,7 @@ pipeline {
                 sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                 sh 'apt-get install sshpass'
                 sh 'sshpass -p ChangeMe ssh -tt -o StrictHostKeyChecking=no sowmya@10.10.10.108 sleep 5 && sshpass -p ChangeMe ssh -tt -o StrictHostKeyChecking=no sowmya@10.10.10.171 sleep 5'
+                sh 'cd todo-ansible && ansible -i inventory.txt -m ping all'
             }
         }
     }
