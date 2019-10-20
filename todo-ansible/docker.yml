@@ -52,7 +52,7 @@
             POSTGRES_PASSWORD: "postgres"
             POSTGRES_USER: "postgres"
             POSTGRES_DB: "todo"
-            POSTGRES_HOST: "10.10.10.171"
+            POSTGRES_HOST: "10.10.10.108"
             POSTGRES_PORT: "5432"
           state: started
   - hosts: webserver
@@ -69,7 +69,7 @@
             POSTGRES_PASSWORD: "postgres"
             POSTGRES_USER: "postgres"
             POSTGRES_DB: "todo"
-            POSTGRES_HOST: "10.10.10.171"
+            POSTGRES_HOST: "10.10.10.108"
             POSTGRES_PORT: "5432"
           ports:
             - "8080:8080"
