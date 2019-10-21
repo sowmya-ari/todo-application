@@ -70,6 +70,7 @@ pipeline {
                 sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                 sh 'apt-get install sshpass'
                 sh 'ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa'
+            }
         }
     }
 }
