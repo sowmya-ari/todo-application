@@ -70,8 +70,8 @@ pipeline {
                 sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                 sh 'apt-get install sshpass'
                 sh 'ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa'
-                sh 'ssh-copy-id sowmya@10.10.10.171'
-                sh 'ssh sowmya@10.10.10.171'
+                sh 'ssh-copy-id -o StrictHostKeyChecking=no sowmya@10.10.10.171'
+                sh 'ssh -o StrictHostKeyChecking=no sowmya@10.10.10.171'
             }
         }
     }
