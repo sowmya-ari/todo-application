@@ -1,1 +1,1 @@
-webserver ansible_ssh_host=10.10.10.156 ansible_connection=ssh ansible_user=sowmya ansible_ssh_pass=ChangeMe ansible_sudo_pass=ChangeMe ansible_become_password=ChangeMe ansible_python_interpreter=/usr/bin/python3 
+webserver ansible_ssh_host=10.10.10.108 ansible_connection=ssh ansible_user=sowmya ansible_ssh_pass=ChangeMe ansible_sudo_pass=ChangeMe ansible_become_password=ChangeMe ansible_python_interpreter=/usr/bin/python3 
