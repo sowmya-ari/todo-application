@@ -38,14 +38,15 @@
       - name: Install Docker Module for Python
         pip:
           name: docker
+      - name: Install Docker py
+        pip:
+          name: docker-py
 
   - hosts: db
     remote_user: sowmya
     become: true
     tasks:
       - name: Starting database container
-        pip:
-          name: docker-py
         docker_container:
           name: database
           image: sowmya1234/todo-database-postgres
