@@ -78,7 +78,6 @@
             POSTGRES_PORT: "54321"
           ports:
             - "8080:8080"
-          command: ["npm","run","dev"]
 
       - name: Starting client server
         docker_container:
@@ -90,7 +89,6 @@
             - web
           ports:
             - "3000:3000"
-          command: ["npm","start"]
          
 
         
