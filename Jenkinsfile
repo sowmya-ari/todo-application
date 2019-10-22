@@ -69,9 +69,11 @@ pipeline {
             steps {
                 sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                 sh 'apt-get install sshpass'
-                sh 'ssh-keygen -t rsa -b 4096 -C "aarivalli23@gmail.com" -N "" -f "~/.ssh/id_rsa" -q'
-                sh 'ssh-copy-id -i ~/.ssh/id_rsa.pub sowmya@10.10.10.171 && ssh-copy-id -i ~/.ssh/id_rsa.pub sowmya@10.10.10.108'
-                sh 'ssh sowmya@10.10.10.171 && ssh sowmya@10.10.10.108'
+                sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.108'
+                sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.117'
+                sh 'cd todo-ansible && ansible all -m ping -i inventory.txt -vvvv'
+                sh 'cd todo-ansible && ansible-playbook docker.yml -i inventory.txt -k -K'
+          
             }
         }
     }
