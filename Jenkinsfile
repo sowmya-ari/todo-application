@@ -13,7 +13,7 @@ pipeline {
                 sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.160'
                 sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.156'
                 sh 'cd todo-ansible && ansible all -m ping -i inventory.txt'
-                sh 'cd todo-ansible && ansible-playbook docker.yml -i inventory.txt'
+                sh 'cd todo-ansible && ansible-playbook docker.yml -i inventory.txt -k -K'
               }
         }
     }
