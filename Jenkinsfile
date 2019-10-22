@@ -69,8 +69,8 @@ pipeline {
             steps {
                 sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                 sh 'apt-get install sshpass'
-                sh 'ssh-keygen -t rsa -b 4096 -C "aarivalli23@gmail.com" -N "" -f "./ssh/id_rsa" -q'
-                sh 'ssh-copy-id -i $(pwd)/ssh/id_rsa.pub sowmya@10.10.10.171 && ssh-copy-id -i $(pwd)/ssh/id_rsa.pub sowmya@10.10.10.108'
+                sh 'ssh-keygen -t rsa -b 4096 -C "aarivalli23@gmail.com" -N "" -f "~/.ssh/id_rsa" -q'
+                sh 'ssh-copy-id -i ~/.ssh/id_rsa.pub sowmya@10.10.10.171 && ssh-copy-id -i ~/.ssh/id_rsa.pub sowmya@10.10.10.108'
                 sh 'ssh sowmya@10.10.10.171 && ssh sowmya@10.10.10.108'
             }
         }
