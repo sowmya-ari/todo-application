@@ -44,18 +44,20 @@
     become: true
     tasks:
       - name: Starting database container
+        pip:
+          name: docker-py
         docker_container:
           name: database
           image: sowmya1234/todo-database-postgres
           restart: yes
           ports:
-            - "54321:5432"  
+            - "5432:5432"  
           env:
             POSTGRES_PASSWORD: "postgres"
             POSTGRES_USER: "postgres"
             POSTGRES_DB: "todo"
             POSTGRES_HOST: "10.10.10.160"
-            POSTGRES_PORT: "54321"
+            POSTGRES_PORT: "5432"
           state: started
   - hosts: webserver
     remote_user: sowmya
