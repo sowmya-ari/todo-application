@@ -1,2 +1,2 @@
-webserver ansible_host=10.10.10.156 ansible_connection=ssh ansible_user=sowmya ansible_ssh_pass=ChangeMe ansible_sudo_pass=ChangeMe ansible_become_password=ChangeMe ansible_python_interpreter=/usr/bin/python3 
-db ansible_host=10.10.10.160 ansible_connection=ssh ansible_user=sowmya ansible_ssh_pass=ChangeMe ansible_sudo_pass=ChangeMe ansible_become_password=ChangeMe ansible_python_interpreter=/usr/bin/python3 
+webserver ansible_host=10.10.10.156 ansible_connection=ssh ansible_user=sowmya ansible_ssh_pass=ChangeMe ansible_sudo_pass=ChangeMe ansible_become_password=ChangeMe ansible_python_interpreter=/usr/bin/python 
+db ansible_host=10.10.10.160 ansible_connection=ssh ansible_user=sowmya ansible_ssh_pass=ChangeMe ansible_sudo_pass=ChangeMe ansible_become_password=ChangeMe ansible_python_interpreter=/usr/bin/python 

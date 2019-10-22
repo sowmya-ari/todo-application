@@ -17,9 +17,9 @@
            - ca-certificates
            - curl
            - software-properties-common
-           - python3-pip
+           - python-pip
            - virtualenv
-           - python3-setuptools
+           - python-setuptools
 
       - name: Add Docker APT repository
         apt_repository:
@@ -38,12 +38,7 @@
       - name: Install Docker Module for Python
         pip:
           name: docker
-          executable: pip3
 
-      - name: Install Docker-compose
-        pip: 
-          name: docker-compose
-          executable: pip3
   - hosts: db
     remote_user: sowmya
     become: true
@@ -54,13 +49,13 @@
           image: sowmya1234/todo-database-postgres
           restart: yes
           ports:
-            - "5432:5432"  
+            - "54321:5432"  
           env:
             POSTGRES_PASSWORD: "postgres"
             POSTGRES_USER: "postgres"
             POSTGRES_DB: "todo"
             POSTGRES_HOST: "10.10.10.160"
-            POSTGRES_PORT: "5432"
+            POSTGRES_PORT: "54321"
           state: started
   - hosts: webserver
     remote_user: sowmya
