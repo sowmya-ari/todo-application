@@ -11,6 +11,7 @@ pipeline {
                 sh 'apt-get install sshpass'
                 sh 'which ansible'
                 sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.160'
+                sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.156'
               }
         }
     }
