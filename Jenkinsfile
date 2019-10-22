@@ -67,13 +67,12 @@ pipeline {
         }
         stage('Ansible'){
             steps {
-                sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
-                sh 'apt-get install sshpass'
-                sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.108'
-                sh 'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.117'
-                sh 'cd todo-ansible && ansible all -m ping -i inventory.txt -vvvv'
-                sh 'cd todo-ansible && ansible-playbook docker.yml -i inventory.txt -k -K'
-          
+                sh'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
+                sh'apt-get install sshpass'
+                sh'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.108'
+                sh'sshpass -p "ChangeMe" ssh -o StrictHostKeyChecking=no sowmya@10.10.10.117'
+                sh'cd todo-ansible && ansible all -m ping -i inventory.txt -vvvv'
+                sh'cd todo-ansible && ansible-playbook docker.yml -i inventory.txt -k -K'
             }
         }
     }
